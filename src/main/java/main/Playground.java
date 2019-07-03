@@ -1,5 +1,6 @@
 package main;
 
+import core.AdminManagement;
 import model.Question;
 
 import java.io.BufferedReader;
@@ -11,5 +12,6 @@ import java.io.InputStreamReader;
  */
 public class Playground {
     public static void main(String[] args) throws IOException {
+        AdminManagement.printCommands();
     }
 }

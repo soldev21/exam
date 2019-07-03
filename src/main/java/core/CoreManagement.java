@@ -4,6 +4,9 @@ import dao.UserDao;
 import model.User;
 import registry.Authentication;
 
+import static util.Util.print;
+import static util.Util.read;
+
 /**
  * Created by s.huseynli on 7/3/2019.
  */
@@ -13,6 +16,10 @@ public class CoreManagement {
 
     private static boolean initial =true;
     private static Authentication authentication = new Authentication();
+
+    public void start(){
+
+    }
 
     public User register(){
 
@@ -34,7 +41,7 @@ public class CoreManagement {
 
     private User register1(){
 
-        String s = null;
+        String s;
         User user = new User();
         print("Username: ");
         s = read();
@@ -59,12 +66,6 @@ public class CoreManagement {
     }
 
 
-    private String read(){
-        return "";
-    }
 
-    private void print(String s){
-
-    }
 
 }

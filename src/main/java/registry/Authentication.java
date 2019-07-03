@@ -5,6 +5,7 @@ import model.AuthResponse;
 import model.User;
 import static dao.UserDao.userRepository;
 import static util.Util.checkString;
+import static util.Util.getHashed;
 
 /**
  * Created by s.huseynli on 7/3/2019.
@@ -38,9 +39,7 @@ public class Authentication {
         }else return false;
     }
 
-    private String getHashed(String s){
-        return s;
-    }
+
 
     private boolean checkUser(User user){
         return checkString(user.getAddress()) && checkString(user.getName()) && checkString(user.getPhone());

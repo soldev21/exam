@@ -9,9 +9,18 @@ public class ExamSession {
 
     User user;
     Exam exam;
+    private Map<Integer,Boolean> answerHistory;
     int correctAnswers;
 
-    private Map<Integer,Boolean> answerHistory;
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
+    boolean finished;
 
     public User getUser() {
         return user;
