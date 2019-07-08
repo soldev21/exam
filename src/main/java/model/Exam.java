@@ -7,10 +7,28 @@ import java.util.Map;
  */
 public class Exam {
 
+    private int id;
+    private String desc;
     private int maxQuestions;
     private int questionCount;
     private Category category;
     private Map<Integer,Question> questions;
+
+    public int getMaxQuestions() {
+        return maxQuestions;
+    }
+
+    public void setMaxQuestions(int maxQuestions) {
+        this.maxQuestions = maxQuestions;
+    }
+
+    public int getQuestionCount() {
+        return questionCount;
+    }
+
+    public void setQuestionCount(int questionCount) {
+        this.questionCount = questionCount;
+    }
 
     public Category getCategory() {
         return category;
@@ -35,4 +53,19 @@ public class Exam {
     }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 }

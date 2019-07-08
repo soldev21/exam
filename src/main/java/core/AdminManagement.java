@@ -6,8 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static core.AdminManagement.Commands.*;
-import static util.Util.changePassword;
-import static util.Util.read;
+import static util.Util.*;
 
 /**
  * Created by Sherif on 7/4/2019.
@@ -23,6 +22,7 @@ public class AdminManagement {
        public static  final String  CR_CAT =        "-crcat";
        public static  final String  CR_EX =        "-crexam";
        public static  final String  EXIT =        "-exit";
+       public static  final String  HELP =        "-help";
     }
 
     public AdminManagement(User user){
@@ -31,8 +31,9 @@ public class AdminManagement {
 
     public void start(){
         String s;
-        while (!(s=read()).equals("-exit")){
-
+        while (!(s=read()).equals(EXIT)){
+            s = s.trim();
+            handleCommand(s);
         }
     }
 
@@ -50,11 +51,40 @@ public class AdminManagement {
     }
 
     private void handleCommand(String command){
+        if (!command.isEmpty() && !commands.containsKey(command)){
+            printCommands();
+            return;
+        }
+        if (command.equals(HELP)) {
+            printCommands();
+            return;
+        }
+
         switch (command) {
             case C_P : {
                 while (!changePassword(user)){}
                 break;
             }
+            case CR_U : {
+                AuthManagement.register();
+                break;
+            }
+            case ED_U : {
+                editUser();
+                break;
+            }
+            case CR_CAT : {
+                while (!createCategory()){}
+                break;
+            }
+            case CR_EX : {
+                createExam();
+                break;
+            }
         }
     }
+
+
+
+
 }

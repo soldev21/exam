@@ -12,60 +12,37 @@ import static util.Util.read;
  */
 public class CoreManagement {
 
-
-
-    private static boolean initial =true;
-    private static Authentication authentication = new Authentication();
-
     public void start(){
+        User user = AuthManagement.register();
+        boolean isContinue = true;
+        boolean isContinue2;
 
-    }
+        while (isContinue) {
+            isContinue2 = true;
+            if (user.isAdmin()) {
+                AdminManagement adminManagement = new AdminManagement(user);
+                adminManagement.start();
+            } else {
+                UserManagement userManagement = new UserManagement(user);
+                userManagement.start();
+            }
 
-    public User register(){
-
-        User user;
-        boolean b = false;
-        if (initial){
-            print("It is first login. Please set Admin details");
-            user = register1();
-            user.setAdmin(true);
-            b= authentication.add(user);
-            initial=false;
-        }else {
-            print("Please enter User details");
-            user = register1();
-            authentication.add(user);
+            while (isContinue2) {
+                if (!isContinue()) {
+                    isContinue = false;
+                    break;
+                }
+                user = AuthManagement.login();
+                if (user != null) isContinue2 = false;
+            }
         }
-        return (b) ? user : null;
     }
 
-    private User register1(){
-
+    private boolean isContinue(){
+        print("Continue(c) or exit(e) ? ");
         String s;
-        User user = new User();
-        print("Username: ");
-        s = read();
-        user.setUsername(s);
-        print("Password: ");
-        s = read();
-        user.setPassword(s);
-        print("Name: ");
-        s = read();
-        user.setName(s);
-        print("Address: ");
-        s = read();
-        user.setAddress(s);
-        print("Phone: ");
-        s = read();
-        user.setPhone(s);
-        return user;
+        while (!(s=read()).equals("c") && !s.equals("e")){}
+        return (s.equals("c")) ? true : false;
     }
-
-    public User login(){
-        return null;
-    }
-
-
-
 
 }
